@@ -121,7 +121,28 @@ function App() {
             setRes(0);
           }
      
-    }else {
+    }else if (oper === "%"){
+      setRes(parseFloat(num1) % parseFloat(num2));
+      setDisp(parseFloat(num1) % parseFloat(num2));
+      if (oper === "%"){
+            setNum1(0);
+            setNum2(0);
+            setOper(0);
+      }else if (oper === 0){
+            setRes(0);
+          }
+    }else if (oper === "^"){
+      setRes(parseFloat(num1) ** parseFloat(num2));
+      setDisp(parseFloat(num1) ** parseFloat(num2));
+      if (oper === "^"){
+            setNum1(0);
+            setNum2(0);
+            setOper(0);
+      }else if (oper === 0){
+            setRes(0);
+          }
+
+      }else {
       setDisp("ERROR")
       setNum1(0);
       setNum2(0);
@@ -178,7 +199,13 @@ function App() {
       setNum2(num2 + value);
       setDisp(num2 + value);
     }
- 
+  };
+
+  const OnOffClickHandler = (e) => {
+    e.preventDefault();
+    const value = e.target.innerHTML;
+    this.setState({disp})
+
   };
   return(
 
@@ -186,6 +213,8 @@ function App() {
     <CalcDisplay display = {disp}/>
 
     <div className = "calcButtonsContainer">
+       <CalcButton value = "On/Off" onClick={OnOffClickHandler}/>
+       <CalcButton value = "del" onClick={operClickHandler}/>
        <CalcButton value = "7" onClick={numberClickHandler}/>
        <CalcButton value = "8" onClick={numberClickHandler}/>
        <CalcButton value = "9" onClick={numberClickHandler}/>
@@ -198,13 +227,16 @@ function App() {
        <CalcButton value = "2" onClick={numberClickHandler}/>
        <CalcButton value = "1" onClick={numberClickHandler}/>
        <CalcButton value = "*" onClick={operClickHandler}/>
-       <CalcButton value = "%"onClick={percentClickHandler}/>
        <CalcButton value = "."onClick={decimalClickHandler}/>
        <CalcButton value = "0" onClick={numberClickHandler}/>
        <CalcButton value = "/"onClick={operClickHandler}/>
        <CalcButton value = "C" onClick={clearClickHandler}/>
        <CalcButton value = "+-"onClick={signClickHandler}/>
+       <CalcButton value = "%"onClick={operClickHandler}/>
+       <CalcButton value = "^"onClick={operClickHandler}/>
+        <CalcButton value = "Per"onClick={percentClickHandler}/>
        <CalcButton value = "=" onClick={equalClickHandler}/>
+
     </div>
 
     </div>
