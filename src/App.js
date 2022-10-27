@@ -9,6 +9,14 @@ function CalcButton({value, onClick}) {
     </button>
   );
 }
+function CalcOnOFF({value, onClick}) {
+
+  return (
+    <button className = "calcOnOFF" onClick ={onClick}>
+       {value}
+    </button>
+  );
+}
 
 function CalcDisplay({display}) {
   return (
@@ -27,6 +35,8 @@ function App() {
   const[res, setRes] = useState(0);
   const[disp, setDisp] = useState(0);
 
+  const initialText = 'OFF'
+  const[text, setText] = useState(initialText);
 
   const numberClickHandler = (e) => {
     e.preventDefault();
@@ -62,6 +72,13 @@ function App() {
     
     }
     
+    if (text == "ON"){
+      setDisp();
+      setNum1();
+      setNum2();
+      setOper();
+      setRes();
+    }
     console.log(num1 + '|' + num2 + '|' + oper + '|' + res + '|' + 'value:' + value + 'length'+numLength )
   };
 
@@ -71,6 +88,28 @@ function App() {
     const value = e.target.innerHTML;
     setOper(value);
     setDisp(value);
+
+
+    if (text == "ON"){
+      setDisp();
+      setNum1();
+      setNum2();
+      setOper();
+      setRes();
+    }
+    console.log(num1 + '|' + num2 + '|' + oper + '|' + res + '|' + disp);
+  };
+
+  const delClickHandler = () => {
+    if (num1 != 0) {
+      setDisp(num1.substr(0, num1.length - 1));
+      setNum1(num1.substr(0, num1.length - 1));
+    }
+    if (num2 != 0) {
+      setDisp(num2.substr(0, num2.length - 1));
+      setNum2(num2.substr(0, num2.length - 1));
+    }
+   
 
     console.log(num1 + '|' + num2 + '|' + oper + '|' + res + '|' + disp);
   };
@@ -149,6 +188,14 @@ function App() {
       setOper(0);
       setDisp(0);
     }
+
+    if (text == "ON"){
+      setDisp();
+      setNum1();
+      setNum2();
+      setOper();
+      setRes();
+    }
   };
 
  const clearClickHandler = () => {
@@ -158,6 +205,13 @@ function App() {
     setRes(0);
     setDisp(0);
 
+    if (text == "ON"){
+      setDisp();
+      setNum1();
+      setNum2();
+      setOper();
+      setRes();
+    }
     console.log(num1 +'|'+ num2 +'|'+ oper +'|'+ res +'|'+ disp);
   };
   
@@ -174,6 +228,13 @@ function App() {
       setRes(parseFloat(num2) /100);
     }
     
+    if (text == "ON"){
+      setDisp();
+      setNum1();
+      setNum2();
+      setOper();
+      setRes();
+    }
 
     console.log(oper + value + res)
   }
@@ -187,6 +248,13 @@ function App() {
       setDisp(-num2);
     }
     
+    if (text == "ON"){
+      setDisp();
+      setNum1();
+      setNum2();
+      setOper();
+      setRes();
+    }
   };
 
   const decimalClickHandler = (e) => {
@@ -199,12 +267,38 @@ function App() {
       setNum2(num2 + value);
       setDisp(num2 + value);
     }
+
+    if (text == "ON"){
+      setDisp();
+      setNum1();
+      setNum2();
+      setOper();
+      setRes();
+    }
   };
 
   const OnOffClickHandler = (e) => {
     e.preventDefault();
-    const value = e.target.innerHTML;
-    this.setState({disp})
+    const data = e.target.innerHTML;
+    if (data == "OFF"){
+      setText("ON")
+    }else{
+      setText("OFF")
+    }
+    if (data == "OFF"){
+      setDisp()
+      setNum1();
+      setNum2();
+      setOper();
+      setRes();
+
+    }else{
+      setNum1(0);
+      setNum2(0);
+      setOper(0);
+      setRes(0);
+      setDisp(0);
+    }
 
   };
   return(
@@ -213,8 +307,9 @@ function App() {
     <CalcDisplay display = {disp}/>
 
     <div className = "calcButtonsContainer">
-       <CalcButton value = "On/Off" onClick={OnOffClickHandler}/>
-       <CalcButton value = "del" onClick={operClickHandler}/>
+       <CalcOnOFF value = {text} onClick={OnOffClickHandler}/>
+       <CalcButton value = "del" onClick={delClickHandler}/>
+       <CalcButton value = "Per"onClick={percentClickHandler}/>
        <CalcButton value = "7" onClick={numberClickHandler}/>
        <CalcButton value = "8" onClick={numberClickHandler}/>
        <CalcButton value = "9" onClick={numberClickHandler}/>
@@ -234,7 +329,6 @@ function App() {
        <CalcButton value = "+-"onClick={signClickHandler}/>
        <CalcButton value = "%"onClick={operClickHandler}/>
        <CalcButton value = "^"onClick={operClickHandler}/>
-        <CalcButton value = "Per"onClick={percentClickHandler}/>
        <CalcButton value = "=" onClick={equalClickHandler}/>
 
     </div>
