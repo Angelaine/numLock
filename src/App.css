@@ -45,11 +45,11 @@ body {
 
 
 .calcContainer {
-  width: 50%;
-  height: 640px;
+  width: 450px;
+  height: 400px;
   padding: 10px;
   border-radius: 15px;
-  background-color: #000000;
+  background-color: #0F0F0F;
   display: flex;
   flex-wrap: wrap;
 }
@@ -60,45 +60,35 @@ body {
   border-radius: 7px;
   justify-content: flex-end;
   border: 1px solid black;
-  height: 100px;
-  font-size: 4em;
+  height: 80px;
+  font-size: 3em;
   padding: 0 10px;
-  background-color: #323538;
-  color: #FFFF;
+  background-color: #3B3E49;
+  color: #DAF7A6;
 }
 
 .calcButtonsContainer {
   display: flex;
-  height: 500px;
+  height: 300px;
   flex: 0 1 100%;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .calcButton {
-   font-size: 3em;
+   font-size: 2em;
    color:   #FFFF;
    font-family: "Arial";
    display: flex;
-   flex: 0 1 25%;
+   flex: 0 1 150px;
    justify-content: center;
    border-radius: 12px;
    align-items: center;
-   background-color: #FF8C00;
-}
-
-.calcOnOFF {
-   font-size: 3em;
-   color:   #FFFF;
-   font-family: "Arial";
-   display: flex;
-   flex: 2 2 30%;
-   justify-content: center;
-   border-radius: 12px;
-   align-items: center;
-   background-color: #FF8C00;
+   background-color: #D4DAEF;
+   color: #350A1B ;
 }
 
 
 button:hover {
-  background-color: rgb(61, 43, 184);
+  background-color:#F8FF8B;
 }
